@@ -15,12 +15,7 @@ memasang distribution **Ubuntu 20.04**.
 
 
 
-## Memasang alat-alat pada WSL2
-Instalasi alat-alat dapat mengikuti instruksi pada spesifikasi
-Setelah memasang alat-alat untuk membuat sistem operasi,
-lanjutkan ke instruksi berikut sebelum kembali ke pengerjaan milestone 1.
-
-### Instalasi X server
+## Instalasi X server
 1. Pasang [VcXsrv](https://sourceforge.net/projects/vcxsrv/) atau X server lainnya.
 2. Carilah folder shortcut VcXsrv yang berada pada Start Menu seperti `C:\ProgramData\Microsoft\Windows\Start Menu\Programs\VcXsrv`.
 3. Copy shortcut `XLaunch` dan berikan nama seperti `WSL-VcXsrv` atau yang lain.
@@ -41,3 +36,26 @@ Jika ingin mengetes apakah instalasi berhasil pasanglah `xeyes` dengan package m
 (contoh pada ubuntu `sudo apt-get install xeyes`) dan jalankan command `xeyes` pada WSL.
 
 ![WSL xeyes](img/wsl-xeyes.jpg)
+
+
+
+## Bochs berhenti dan tidak terlihat
+Jika `bochs` masih belum terlihat tetapi tidak mengalami error seperti berikut
+
+![WSL hidden](img/wsl-invisible.jpg)
+
+Buka 2 terminal WSL, jalankan `sudo vim ~/.bashrc` pada terminal pertama dan `sudo vim /etc/resolv.conf`.
+Pastikan konfigurasi antara `nameserver` dan `export DISPLAY` sama seperti berikut
+
+![WSL vim bashrc](img/wsl-bashrc.jpg)
+
+Setelah melakukan pengeditan, lakukan save dan exit pada editor `vim` (tekan esc, ketik ":wq").
+Tutup semua terminal WSL dan jalankan ulang untuk reload konfigurasi bash.
+
+
+## Bochs mengalami buffer overflow
+Jika `bochs` mengalami buffer overflow seperti berikut
+
+![WSL bof](img/wsl-bof.jpg)
+
+Salah satu *workaround* yang dapat digunakan adalah menambahkan privilege `sudo` pada `bochs`.
